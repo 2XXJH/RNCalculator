@@ -1,0 +1,68 @@
+import t
+
+@pytest.mark.parametrize(
+        (romanToNum, evaluate_expression),
+        (
+            (5, 25),
+            (3., 9),
+
+        )
+)
+
+
+
+def romanToNum(roman):
+    '''Assigns Roman Numerals to Numerical values.
+    '''
+
+    roman_values = {
+        'I': 1, 'V': 5, 'X': 10, 'L': 50,
+        'C': 100, 'D': 500, 'M': 1000
+
+        }
+    
+    total = 0
+    prev_value = 0
+    
+    for char in reversed(roman):
+        value = roman_values.get(char, 0)
+        if value < prev_value:
+            total -= value
+        else:
+            total += value
+        prev_value = value
+
+    return total if total > 0 else None
+
+def num2Roman(n):
+    ''''converts numerical value to Roman Numeral.
+    '''
+    
+    if n < 1 or n > 3999:
+        return None
+    
+    num = [1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1]
+    sym = ['M', 'CM', 'D', 'CD', 'C', 'XC', 'L', 'XL', 'X', 'IX', 'V', 'IV', 'I']
+
+    roman_numeral = ""
+    for i in range(len(num)):
+        while n >= num[i]:
+            roman_numeral += sym[i]
+            n -= num[i]
+
+    return roman_numeral
+
+def evaluate_expression(expression):
+    '''Returns invalid expression when value is not positive
+    '''
+    try:
+        result = eval(expression)
+        if result <= 0:
+            raise ValueError("Result must be a positive integer.")
+        return result
+    except (SyntaxError, NameError, ZeroDivisionError):
+        return None
+    except ValueError as e:
+        print(e)
+        return None
+

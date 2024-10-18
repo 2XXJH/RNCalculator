@@ -1,0 +1,18 @@
+[build-system]
+requires =  ["setuptools>=42", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "my_listener_JH2"
+version = "0.1.0"
+description = "This program is a calculator in python that outputs roman numeral numbers"
+authors = [
+    { name = "Jhiron Hobbs", email = "jhob8491@students.vsu.edu" }
+]
+dependencies = [
+    "request",
+    "numpy"
+]
+
+[tool.setuptools]
+packages = ["your_package"] # Replace with your actual package name
